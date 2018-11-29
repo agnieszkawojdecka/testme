@@ -1,8 +1,9 @@
 # Artifactory Provisioning with Docker-Compose
 
-This directory provides a script to spin up different type of Artifactory with Docker Compose.
-Artifactory is available as Docker Pro images.
-These images are available for download from [JFrog Bintray](https://bintray.com/jfrog) 
+This directory provides a script to spin up different types of Artifactory with Docker Compose.
+Artifactory is available as Docker Pro images. You can choose between Artifactory version, node number and license type.
+If node number is bigger than 1 than an Artifactory HA cluster is created. In any case Artifactory is spin up with  PostgreSQL and Nginx.
+These Artifactory images are available for download from [JFrog Bintray](https://bintray.com/jfrog) 
 
 ## Persistent Storage
 
@@ -45,6 +46,8 @@ brew install python3
 
 python3 --version
 
+cd artifactory-provision
+
 python3 -m venv provision
 
 source provision/bin/activate
@@ -68,6 +71,8 @@ scl enable rh-python36 bash
 
 python --version
 
+cd artifactory-provision
+
 python -m venv provision
 
 source provision/bin/activate
@@ -88,7 +93,7 @@ To run with default arguements (defined in bin/.env):
 To run with customized arguements:
 
 ```bash
-./bin/construct.sh -a 5.11.0 -n 2 -cf
+./bin/construct.sh -a 5.11.0 -m 2 -l ep -n 2 -cf
 ```
 
 To find further help, please run:
@@ -110,7 +115,7 @@ To run with customized arguements:
 
 ```bash
 cd bin
-sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh -a 5.11.0 -n 2 -cf"
+sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh -a 5.11.0 -m 2 -l ep -n 2 -cf"
 ```
 
 To find further help, please run:
