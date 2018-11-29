@@ -120,11 +120,3 @@ cd bin
 sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh -h"
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```bash
-Give an example
-```
-
