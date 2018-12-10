@@ -1,26 +1,25 @@
-# Artifactory Provisioning with Docker-Compose
+# mission-control-env-utils
 
 This directory provides a script to spin up different types of Artifactory with Docker Compose.
-Artifactory is available as Docker Pro images. You can choose between Artifactory version, node number and license type.
-If node number is bigger than 1 than an Artifactory HA cluster is created. In any case Artifactory is spin up with  PostgreSQL and Nginx.
+Artifactory is started with its dependencies PostgreSQL and Nginx.
 These Artifactory images are available for download from [JFrog Bintray](https://bintray.com/jfrog) 
 
 ## Persistent Storage
 
 For persistent storage, all volumes are mounted from the host.  
-All examples default to the host's **/data** directory.
-- Artifactory data: **/data/artifactory**
-- PostgreSQL data: **/data/postgresql**
+All examples default to the host's **data** directory that is created next to bin.
+- Artifactory data: **data/artifactory**
+- PostgreSQL data: **data/postgresql**
 - NginX
-  - Logs: **/data/nginx/log**
-  - SSL: **/data/nginx/ssl**
-After executing the script, the needed set of data directories for Artifactory Pro or HA will be created under /data (on Mac it defaults to ~/.artifactory).
+  - Logs: **data/nginx/log**
+  - SSL: **data/nginx/ssl**
 
 ### Prerequisites
 
 - Docker
 - Docker-Compose
 - Python
+
 
 ```
 Example on MAC OS (High Sierra 10.13.6):
@@ -46,7 +45,7 @@ brew install python3
 
 python3 --version
 
-cd artifactory-provision
+cd mission-control-env-utils
 
 python3 -m venv provision
 
@@ -57,71 +56,31 @@ pip install --upgrade pip
 pip install -r bin/python/noversion_requirements.txt
 ```
 
-### Installing on Linux
-
-A step by step series of how to get a development env running on Linux CentOS 7
-To learn how to set Docker Compose up, please refer to the [Docker Compose](https://docs.docker.com/compose/install/).
-
-```bash
-sudo yum install centos-release-scl
-
-sudo yum install rh-python36
-
-scl enable rh-python36 bash
-
-python --version
-
-cd artifactory-provision
-
-python -m venv provision
-
-source provision/bin/activate
-
-pip install --upgrade pip
-
-pip install -r bin/python/noversion_requirements.txt
-```
-
 ## Running the script on Mac OS
 
-To run with default arguements (defined in bin/.env):
+Input needs to be defined first in
 
 ```bash
-./bin/construct.sh
+vi bin/input.json
 ```
 
-To run with customized arguements:
-
-```bash
-./bin/construct.sh -a 5.11.0 -m 2 -l ep -n 2 -cf
-```
-
-To find further help, please run:
-
-```bash
-./bin/construct.sh -h
-```
-
-## Running the script on CentOS
-
-To run with default arguements (defined in bin/.env):
+To run:
 
 ```bash
 cd bin
-sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh"
+python run_provision.py input.json
 ```
 
-To run with customized arguements:
+To rerun:
 
 ```bash
-cd bin
-sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh -a 5.11.0 -m 2 -l ep -n 2 -cf"
+python run_provision.py input.json -c
 ```
 
-To find further help, please run:
 
-```bash
-cd bin
-sudo sh -c ". ../provision/bin/activate ; pip install -r python/noversion_requirements.txt; ./construct.sh -h"
-```
+
+
+
+
+
 
