@@ -8,11 +8,11 @@ These Artifactory images are available for download from [JFrog Bintray](https:/
 
 For persistent storage, all volumes are mounted from the host.  
 All examples default to the host's **data** directory that is created next to bin.
-- Artifactory data: **data/artifactory**
-- PostgreSQL data: **data/postgresql**
+- Artifactory data: **data/<project-global-name>/<timestamp>/<project-index>/artifactory**
+- PostgreSQL data: **data/<project-global-name>/<timestamp>/<project-index>/postgresql**
 - NginX
-  - Logs: **data/nginx/log**
-  - SSL: **data/nginx/ssl**
+  - Logs: **data/<project-global-name>/<timestamp>/<project-index>/nginx/log**
+  - SSL: **data/<project-global-name>/<timestamp>/<project-index>/nginx/ssl**
 
 ### Prerequisites
 
