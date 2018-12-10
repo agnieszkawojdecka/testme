@@ -45,15 +45,15 @@ brew install python3
 
 python3 --version
 
-cd mission-control-env-utils
-
 python3 -m venv provision
 
 source provision/bin/activate
 
+cd mission-control-env-utils
+
 pip install --upgrade pip
 
-pip install -r bin/python/noversion_requirements.txt
+pip install -r bin/noversion_requirements.txt
 ```
 
 ## Running the script on Mac OS
